@@ -1,0 +1,5 @@
+下列關於JavaScript的敘述，何者錯誤?
+(A)不是嚴謹的語言，有時會發生奇怪的矛盾情況
+(B)JavaScript和 LiveScript指的是同一個語言
+(C)標準化的 JavaScript又稱作 ECMAScript
+(D)JavaScript具有Java 類似的物件生成機制

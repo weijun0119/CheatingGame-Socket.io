@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+
+    <!-- <link rel="stylesheet" href="Client.css"> -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+        #scoreBtn{
+            border-radius: 50px;
+            width: 516px;
+            height: 220px;
+            position: absolute;
+            font-size: 20px;
+            top:108px;
+            left: 130px;
+            background-color: rgb(205, 248, 255);
+            visibility: hidden;
+
+        }
+        #ansBtn{
+            border-radius: 50px;
+            width: 512px;
+            height: 220px;
+            position: absolute;
+            font-size: 20px;
+            top:1100px;
+            left: 130px;
+            background-color: rgb(255, 255, 255);
+            visibility: hidden;
+
+        }
+        #game{
+            position: absolute;
+            width: 782px;
+            height: 1390px;
+            background-image: url("public/assets/clientUI/題目.jpg");
+            background-size: 100% 100%;
+        }
+    </style>
+    
+
+</head>
+<body>
+    <!-- 請選擇您的代表色:<br>
+    <input id="color" type="color" value="#000000"/>
+    <button id="btn" onclick="onBtnClicked()">發射!</button> -->
+
+    <div id = "game">
+        <h1 id="counter-label" style="text-align:center;">Player4</h1>
+        <button type="button" id="scoreBtn" ><img src="/public/assets/clientUI/作弊按鈕.png" width="100.5%" height="100%"></button>
+        <button type="button" id="ansBtn" ><img src="/public/assets/clientUI/答題按鈕.png" width="100%" height="100%"></button>
+    </div>
+    <script>
+        const socket = io();
+
+
+        let a=0;
+
+        document.getElementById("scoreBtn").onmousedown=function()
+        {
+            a=1;
+            console.log(2);
+            socket.emit("directive4",a);
+        }
+        document.getElementById("scoreBtn").onmouseup=function()
+        {
+            a=0;
+            console.log(1);
+            socket.emit("directive4",a);
+        }
+
+        document.getElementById("scoreBtn").ontouchstart=function()
+        {
+            a=1;
+            console.log(2);
+            socket.emit("directive4",a);
+        }
+        document.getElementById("scoreBtn").ontouchend=function()
+        {
+            a=0;
+            console.log(1);
+            socket.emit("directive4",a);
+        }
+        socket.on('User4Start',function(b){
+            console.log(b);
+            document.getElementById('scoreBtn').style.visibility = "visible";
+            document.getElementById('ansBtn').style.visibility = "visible";
+        })
+        document.getElementById('ansBtn').onclick =function(){
+            c=1;
+            socket.emit("user4answer",c);
+        }
+    </script>
+</body>
+</html>

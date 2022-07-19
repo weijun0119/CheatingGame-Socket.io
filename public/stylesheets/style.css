@@ -1,0 +1,51 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+div.time {
+  position: absolute;
+  top: 45px;
+  left: 905px;
+  width: 300px;
+  font-size:xx-large;
+  color: #73AD21;
+}
+
+div.count1{
+  position: absolute;
+  top: 650px;
+  left: 220px;
+  font-size:xx-large;
+  color: #00B7FF
+}
+
+div.count2{
+  position: absolute;
+  top: 650px;
+  left: 680px;
+  font-size:xx-large;
+  color: #00B7FF
+}
+
+div.count3{
+  position: absolute;
+  top: 650px;
+  left: 1150px;
+  font-size:xx-large;
+  color: #00B7FF
+}
+
+div.count4{
+  position: absolute;
+  top: 650px;
+  left: 1675px;
+  font-size:xx-large;
+  color: #00B7FF
+}
+div.pr{
+  color:#ffffff
+}

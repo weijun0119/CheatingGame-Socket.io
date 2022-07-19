@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <script src="/public/javascripts/p5.min.js"></script>
+    <script src="/public/javascripts/shape5.js"></script>
+    <script src="/public/javascripts/p5.play.js"></script>
+    <script src="/public/javascripts/jquery-1.8.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        #myDiv {
+            word-wrap: break-word; 
+            word-break: normal;
+            position: absolute;
+            width: 720px;
+            top: 200px;
+            left: 465px;
+            font-style: rgb(255, 238, 1);
+            font-family: 'Noto Sans TC',sans-serif !important;
+            font-size: 28px;
+            visibility: hidden;
+        }
+
+        .p5Canvas{
+            visibility: hidden;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: -999;
+            border: 1px solid black;
+
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        #container{
+            width: 1920px;
+            height: 1080px;
+            border: 1px solid black;
+            background-image: url("../public/assets/background/背景.png");
+            background-size: 100% 100%;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            margin: 0 auto;
+
+        }
+        #PR{
+            color:rgb(255, 255, 255);
+        }
+
+
+        #gameGo{
+            position: absolute;
+            left: 795px;
+            top: 830px;
+        }
+
+        #gameInstruction{
+            position: absolute;
+            width: 1920px;
+            height: 1080px;
+            background-image: url("../public/assets/background/背景講解.png");
+            background-size: 100% 100%;
+        }
+
+        #gameStart{
+            position: absolute;
+            left: 795px;
+            top: 830px;
+        }
+
+        /* @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+        #intro {
+            word-wrap: break-word; 
+            word-break: normal;
+            position: absolute;
+            width: 1300px;
+            top: 120px;
+            left: 315px;
+            font-style: black;
+            font-family: 'Noto Sans TC',sans-serif !important;
+            font-size: 48px;
+        } */
+
+        #UI {
+            z-index: 1000;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="container" style="visibility: visible;" >
+        <ul class="list"></ul>
+        <div id="gameGo">
+            <img src="../public/assets/進入遊戲.png" width="30%" height="30%"alt="">
+        </div>
+        <div id="gameInstruction" style="visibility: hidden;">
+            <div id="gameStart">
+                <img src="../public/assets/遊戲開始.png"width="30%" height="30%" alt="">
+            </div>
+        </div>
+
+    </div>
+    <div id = "UI" style="visibility: hidden;">
+        <div class = "time">
+            <h1 id="count-down-timer"></h1>
+        </div>
+        <div class = "count1">
+            <h1 id="counter-label1">0</h1>
+        </div>
+        <div class = "count2">
+            <h1 id="counter-label2">0</h1>
+        </div>
+        <div class = "count3">
+            <h1 id="counter-label3">0</h1>
+        </div>
+        <div class = "count4">
+            <h1 id="counter-label4">0</h1>
+        </div>
+
+
+    </div>
+    <div>
+
+    </div>
+    <div id = "myDiv" >
+        <h4 id="PR">下列關於JavaScript的敘述，何者錯誤?</h4>
+        <div class = "pr">
+            <h5 id="AW1">(A)不是嚴謹的語言，有時會發生奇怪的矛盾情況</h5>
+            <h5 id="AW2">(B)JavaScript和 LiveScript指的是同一個語言</h5>
+            <h5 id="AW3">(C)標準化的 JavaScript又稱作 ECMAScript</h5>
+            <h5 id="AW4">(D)JavaScript具有Java 類似的物件生成機制</h5>
+        </div>
+    </div>
+
+    
+
+
+    <script>
+
+        var gameGo = document.querySelector("#gameGo");
+            var gameInstruction = document.querySelector("#gameInstruction");
+            gameGo.onclick = function() {
+                gameGo.style.display = "none";
+                gameInstruction.style.visibility = "visible";
+            }
+            var gameStart = document.querySelector("#gameStart");
+            var startGame = document.querySelector("#startGame");
+            
+    
+            gameStart.onclick = function() {
+                var gameInstruction = document.querySelector("#gameInstruction");
+                gameInstruction.style.visibility = "hidden";
+                container.style.visibility = "hidden";
+
+                document.getElementById('defaultCanvas0').style.visibility = "visible";
+                document.getElementById('UI').style.visibility = "visible";
+                let time_minutes = 1; // Value in minutes
+                let time_seconds = 30; // Value in seconds
+
+                let duration = time_minutes * 60 + time_seconds;
+
+                element = document.querySelector('#count-down-timer');
+                element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
+
+
+                startCountDown(--duration, element);
+                io().emit('Start');
+            }
+
+
+
+
+
+
+    </script>
+<script  src="template.js"></script>
+
+</body>
+</html>
